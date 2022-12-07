@@ -1,9 +1,11 @@
-#include <sud.h>
+#include "sud.h"
 #include <iostream>
 #include <cstdlib>
 #include <string>
 #include <vector>
 #include <random>
+#include <algorithm>
+#include <iterator>
 using namespace std;
 
 char welcomeUser(){
@@ -126,7 +128,6 @@ void zero_tag(int* p)
 bool checkAnswer()
 {    
     int tag[10]={0};  
-    int curValue=0;
     int curValue=0;
     for(int i=0; i<9;i++)
     {
