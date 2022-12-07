@@ -4,6 +4,9 @@
 #include <string>
 #include <vector>
 #include <random>
+#include <algorithm>
+#include <iterator>
+
 using namespace std;
 
 char welcomeUser(){
