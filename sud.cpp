@@ -79,3 +79,71 @@ for(int i = 0; i < 6; i++){
 
 
 }    
+
+
+
+//Checking
+void initSudoku();   
+bool checkAnswer();
+int mySudoku[9][9];
+void Sudoku::initSudoku(){    
+    for(int i=0;i<9;i++)        
+        for(int j=0;j<9;j++)            
+            cin>>mySudoku[i][j];}
+bool review(int* p) 
+{    
+    int i=1;    
+    while(i<10)    
+    {        
+        if(!*(++p))        
+        {            
+            return false;        
+        }        
+        ++i;    
+    }    
+    return true;
+}
+
+void zero_tag(int* p)   
+{    
+    int i=1;    
+    while(i<10)    
+    {        
+        *(++p)=0;        
+        ++i;    
+    }
+}
+bool Sudoku::checkAnswer()
+{    
+    int tag[10]={0};  
+    int curValue=0;
+    int curValue=0;
+    for(int i=0; i<9;i++)
+    {
+        for(int j=0;j<9;j++)
+        {
+            curValue = mySudoku[i][j];
+            tag[curValue]=1; 
+        }
+    }
+    if(!review(tag))
+        return false; 
+
+    zero_tag(tag)
+
+    for(int i=0; i<9;i++)
+    {
+        for(int j=0;j<9;j++){
+            curValue = mySudoku[i][j];
+            tag[curValue]=1; 
+        }
+    }
+    if(!review(tag)){
+        return false; 
+
+    zero_tag(tag)
+    }
+    
+    return true;
+
+}
