@@ -96,7 +96,7 @@ for(int i = 0; i < 6; i++){
 void initSudoku();   
 bool checkAnswer();
 int mySudoku[9][9];
-void Sudoku::initSudoku(){    
+void initSudoku(){    
     for(int i=0;i<9;i++)        
         for(int j=0;j<9;j++)            
             cin>>mySudoku[i][j];}
@@ -123,7 +123,7 @@ void zero_tag(int* p)
         ++i;    
     }
 }
-bool Sudoku::checkAnswer()
+bool checkAnswer()
 {    
     int tag[10]={0};  
     int curValue=0;
@@ -139,7 +139,7 @@ bool Sudoku::checkAnswer()
     if(!review(tag))
         return false; 
 
-    zero_tag(tag)
+    zero_tag(tag);
 
     for(int i=0; i<9;i++)
     {
@@ -151,7 +151,8 @@ bool Sudoku::checkAnswer()
     if(!review(tag)){
         return false; 
 
-    zero_tag(tag)
+    zero_tag(tag);
+
     }
     
     return true;
