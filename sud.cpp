@@ -191,4 +191,27 @@ bool checkAnswer()
     return true;
 
 }
+<<<<<<< Updated upstream
 //test
+=======
+//checking if array is full
+bool gameOver(int solution[9][9]) {
+    bool isfull;
+    for (int i = 0; i < 9; i++)
+    {
+       for (int j = 0; j<9; j++)
+       {
+        if (solution[i][j]==0)
+        {
+            return false;
+        }
+        else{
+            isfull= true;
+        }
+        
+       }
+        
+    }
+    return isfull;
+}
+>>>>>>> Stashed changes
