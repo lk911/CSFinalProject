@@ -1,4 +1,4 @@
-#include <sud.h>
+#include "sud.h"
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -6,7 +6,7 @@
 using namespace std;
 
 int main(){
-int solution[9][9] = {
+int presetSolution[9][9] = {
     {5,3,4,6,7,8,9,1,2},
     {6,7,2,1,9,5,3,4,8},
     {1,9,8,3,4,2,5,6,7},
@@ -18,8 +18,9 @@ int solution[9][9] = {
     {3,4,5,2,8,6,1,7,9}
 
                           };
-
+int solution[9][9];
 srand(time(0));
+makeBoard(presetSolution);
 
 
 

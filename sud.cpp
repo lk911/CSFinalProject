@@ -1,4 +1,4 @@
-#include <sud.h>
+#include "sud.h"
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -72,17 +72,57 @@ bool validBoard(int solution[9][9]) {
     return true;
 }
 
-void printBoard(int solution[9][9]) {
-    for(int i = 0; i < 9; i++) {
-        for(int j = 0; j < 9; j++) {
-            cout << solution[i][j] << " ";
-        }
-        cout << endl;
-    }
-    cout << endl;
+//modified here for aesthetic purposes and to fit our code
+void printBoard(int presetSolution[9][9]){
+   for (int i = 0; i < 9; i++){
+      for (int j = 0; j < 9; j++){
+         if(j == 3 || j == 6)
+            cout << " | ";
+         cout << presetSolution[i][j] <<" ";
+      }
+      if(i == 2 || i == 5){
+         cout << endl;
+         for(int k = 0; k<9; k++)
+            cout << "---";
+      }
+      cout << endl;
+   }
 }
 
 //end of prof sheas code
+
+//creates and outputs puzzles varying in difficulty
+void makePuzzle(int presetSolution[9][9]){
+    int randx, randy;
+    int choice = welcomeUser();
+    if(choice == 'a'){
+    for(int i=0; i < 45; i++){
+    randx = rand() % 9 + 0;
+    randy = rand() % 9 + 0;
+    presetSolution[randy][randx] = 0;
+    }
+    }
+    else if(choice == 'b'){
+    for(int i=0; i < 50; i++){
+    randx = rand() % 9 + 0;
+    randy = rand() % 9 + 0;
+    presetSolution[randy][randx] = 0;
+    }
+    }
+    else if(choice == 'c'){
+    for(int i=0; i < 60; i++){
+    randx = rand() % 9 + 0;
+    randy = rand() % 9 + 0;
+    presetSolution[randy][randx] = 0;
+    }
+    }
+
+    printBoard(presetSolution);
+    cout << "Fill in all '0' values," << endl;
+}
+
+
+
 
 
 //Checking

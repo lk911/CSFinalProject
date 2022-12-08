@@ -7,6 +7,7 @@ void generateBoard(int solution[9][9], int startX, int startY);
 void makeBoard(int solution[9][9]);
 bool validBoard(int solution[9][9]);
 void printBoard(int solution[9][9]);
+void makePuzzle(int presetSolution[9][9]);
 
 
 #endif
