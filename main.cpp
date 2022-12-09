@@ -58,9 +58,10 @@ int main(){
         if (isfull(originalSolution))
         {
             cout<<"Congrats! You finished!"<<endl;
-            cout<<"You completed it in: "<<duration<<endl;
+            cout<<"You completed it in: "<< duration <<endl;
+            return 0;
         }
         
     }
 }
-
+// Duration, output stats
