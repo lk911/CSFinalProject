@@ -10,5 +10,5 @@ void printBoard(int solution[9][9]);
 void makePuzzle(int presetSolution[9][9],char choice);
 void initSudoku();   
 bool enterandcheckanswer(int solution[9][9],int presetSolution[9][9]);
-bool isfull(int originalSolution[9][9]);
+bool isfull(int presetSolution[9][9]);
 #endif

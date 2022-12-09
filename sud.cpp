@@ -117,7 +117,7 @@ void makePuzzle(int presetSolution[9][9], char choice){
     }
 
     printBoard(presetSolution);
-    cout << "Fill in all '0' values," << endl;
+    cout << "Fill in all '0' values:" << endl;
 }
 
 
@@ -125,15 +125,13 @@ void makePuzzle(int presetSolution[9][9], char choice){
 
 
 //Checking
-bool enterandcheckanswer(int Originalsolution[9][9],int presetSolution[9][9]){
+bool enterandcheckanswer(int originalSolution[9][9],int presetSolution[9][9]){
     int i,j,guess;
-    cout <<"Please enter the number of the row"<< endl;
-    cin >> i;
-    cout <<"Please enter the number of the collumn"<< endl;
-    cin >> j;
-    cout<<"enter your guess:"<<endl;
+    cout <<"Please enter the number of the row and column:"<< endl;
+    cin >> i >> j;
+    cout<<"Enter your guess:"<<endl;
     cin>> guess;
-    if(guess == Originalsolution[i-1][j-1]){
+    if(guess == originalSolution[i-1][j-1]){
         presetSolution[i-1][j-1]=guess;
         printBoard(presetSolution);
         return true;
@@ -142,40 +140,23 @@ bool enterandcheckanswer(int Originalsolution[9][9],int presetSolution[9][9]){
     return false;
     
 }
-bool checktotal(int Originalsolution[9][9], int presetSolution[9][9])
-{    
-    for(int i=0; i<9;i++)
-    {
-        for(int j=0;j<9;j++)
-        {
-            if(presetSolution[i][j] != Originalsolution[i][j]){
-                cout <<"Errors in the soduko!"<< endl; 
-                return false;
+bool isfull(int presetSolution[9][9]){
+    int numzeroes = 0;
+    for(int i = 1; i < 9; i++){
+        for(int j = 1; j < 9; j++){
+            if(presetSolution[i][j] == 0){
+                numzeroes++;
+                cout << "found zero";
             }
-            
         }
     }
-    cout <<"Congratulation!"<< endl;
-    return true;
-}
-bool isfull(int originalSolution[9][9]){
-    bool full;
-    for (int i = 0; i < 9; i++)
-    {
-        for (int j = 0; i < 9; j++)
-        {
-            if (originalSolution[i][j]==0)
-            {
-                cout<<"not full"<<endl;
-                return false;
-            }
-            else{
-                full = true;
-            }
-            
-        }
-        
+    if(numzeroes > 0){
+        cout << "Game not complete yet, keep playing!" << endl;
+        return false;
     }
-    return full;
-    
+    else if (numzeroes == 0){
+        cout << "Game complete. Great job!" << endl;
+        return true;
+    }
+    return false;
 }
