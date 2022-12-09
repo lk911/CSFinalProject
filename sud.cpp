@@ -92,9 +92,8 @@ void printBoard(int presetSolution[9][9]){
 //end of prof sheas code
 
 //creates and outputs puzzles varying in difficulty
-void makePuzzle(int presetSolution[9][9]){
+void makePuzzle(int presetSolution[9][9], char choice){
     int randx, randy;
-    int choice = welcomeUser();
     if(choice == 'a'){
     for(int i=0; i < 45; i++){
     randx = rand() % 9 + 0;
@@ -118,45 +117,54 @@ void makePuzzle(int presetSolution[9][9]){
     }
 
     printBoard(presetSolution);
-    cout << "Fill in all '0' values," << endl;
+    cout << "Fill in all '0' values:" << endl;
 }
+
 
 
 
 
 //Checking
-bool checkanswer(int i, int j, int solution[9][9], int presetSolution[9][9]){
-    cout <<"Please enter the number of the line"<< endl;
-    cin >> i;
-    cin.ignore();
-    cout <<"Please enter the number of the row"<< endl;
-    cin >> j;
-    cin.ignore();
-    if(presetSolution[i][j] == solution[i][j]){
-        cout <<"Your number is correct!"<< endl;
+bool enterandcheckanswer(int originalSolution[9][9],int presetSolution[9][9], int &numguesses, int &numtrueguesses, int &numfalseguesses){
+    int i,j,guess;
+    cout <<"Please enter the number of the row and column:"<< endl;
+    cin >> i >> j;
+    cout<<"Enter your guess:"<<endl;
+    cin>> guess;
+    if(guess == originalSolution[i-1][j-1]){
+        presetSolution[i-1][j-1]=guess;
+        printBoard(presetSolution);
+        numguesses++;
+        numtrueguesses++;
         return true;
     }
-    cout<<"Your number is wrong!"<< endl;
+    printBoard(presetSolution);
+    numguesses;
+    numfalseguesses++;
     return false;
+    
 }
-bool checktotal(int solution[9][9], int presetSolution[9][9])
-{    
-   
-    for(int i=0; i<9;i++)
-    {
-        for(int j=0;j<9;j++)
-        {
-            if(presetSolution[i][j] != solution[i][j]){
-                cout <<"Errors found in the game!"<< endl; 
-                return false;
+bool isfull(int presetSolution[9][9]){
+    int numzeroes = 0;
+    for(int i = 1; i < 9; i++){
+        for(int j = 1; j < 9; j++){
+            if(presetSolution[i][j] == 0){
+                numzeroes++;
             }
-            
         }
     }
-    cout <<"Congratulations!"<< endl;
-    return true;
-
+    if(numzeroes > 0){
+        cout << "Game not complete yet, keep playing!" << endl;
+        return false;
+    }
+    else if (numzeroes == 0){
+        cout << "Game complete. Great job!" << endl;
+        return true;
+    }
+    return false;
 }
 
-
-
+void outputStats(int numguesses, int numtrueguesses, int numfalseguesses){
+    cout << "You completeted the game in" << numguesses << " tries." << endl << "Of these, " << numfalseguesses << " were false, and " << numtrueguesses << " were correcrt." << endl;
+    cout << "This give you a ratio of" << numtrueguesses/numguesses << "percent correct answers." << endl;
+}
