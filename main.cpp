@@ -8,11 +8,10 @@
 using namespace std;
 
 int main(){
-    bool gamerun=true, puzzlemade = false;
     clock_t start;
     double duration;
     start = clock();
-    int numofguesses=0;
+    int numguesses=0, numtrueguesses=0, numfalseguesses=0;
     duration = (clock() - start ) / (double) CLOCKS_PER_SEC;
     int originalSolution[9][9] = {
         {5,3,4,6,7,8,9,1,2},
@@ -39,16 +38,16 @@ int main(){
     srand(time(0));
 
     makePuzzle(presetSolution, welcomeUser());
-    for(int i = 0; !isfull(presetSolution); i++){
-        if (enterandcheckanswer(originalSolution,presetSolution)){
+    while(!isfull(presetSolution)){
+        if (enterandcheckanswer(originalSolution,presetSolution, numguesses, numtrueguesses, numfalseguesses)){
             cout<<"Your answer fits!"<<endl;
         }
         else{
             cout<<"Your answer does not fit"<<endl;
         }
-        numofguesses++;
         int numzeroes;
 }
         cout << "Game over. Thanks for playing!" << endl;
     }
+
 // Duration, output stats

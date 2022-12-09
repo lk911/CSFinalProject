@@ -125,7 +125,7 @@ void makePuzzle(int presetSolution[9][9], char choice){
 
 
 //Checking
-bool enterandcheckanswer(int originalSolution[9][9],int presetSolution[9][9]){
+bool enterandcheckanswer(int originalSolution[9][9],int presetSolution[9][9], int &numguesses, int &numtrueguesses, int &numfalseguesses){
     int i,j,guess;
     cout <<"Please enter the number of the row and column:"<< endl;
     cin >> i >> j;
@@ -134,9 +134,13 @@ bool enterandcheckanswer(int originalSolution[9][9],int presetSolution[9][9]){
     if(guess == originalSolution[i-1][j-1]){
         presetSolution[i-1][j-1]=guess;
         printBoard(presetSolution);
+        numguesses++;
+        numtrueguesses++;
         return true;
     }
     printBoard(presetSolution);
+    numguesses;
+    numfalseguesses++;
     return false;
     
 }
@@ -159,4 +163,9 @@ bool isfull(int presetSolution[9][9]){
         return true;
     }
     return false;
+}
+
+void outputStats(int numguesses, int numtrueguesses, int numfalseguesses){
+    cout << "You completeted the game in" << numguesses << " tries." << endl << "Of these, " << numfalseguesses << " were false, and " << numtrueguesses << " were correcrt." << endl;
+    cout << "This give you a ratio of" << numtrueguesses/numguesses << "percent correct answers." << endl;
 }
