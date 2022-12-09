@@ -50,7 +50,7 @@ int main(){
     }
         cout << "Game over. Thanks for playing!" << endl;
         end = timeGetTime();
-        duration = (double)(end - start)/100;
+        duration = (double)(end - start)/10;
         outputStats(numguesses, numtrueguesses, numfalseguesses);
         cout << "The time you used: "<< duration << " seconds"<< endl;
 
