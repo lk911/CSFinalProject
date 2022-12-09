@@ -22,7 +22,9 @@ int solution[9][9];
 srand(time(0));
 makeBoard(presetSolution);
 
-for(int i=0; !checkAnswer(); )
+for(int i=0; !checkAnswer(presetSolution); i++ ){
+    
+}
 
 
 return 0;

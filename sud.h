@@ -9,6 +9,6 @@ bool validBoard(int solution[9][9]);
 void printBoard(int solution[9][9]);
 void makePuzzle(int presetSolution[9][9]);
 void initSudoku();   
-bool checkAnswer();
+bool checkAnswer(int presetSolution[9][9]);
 
 #endif
