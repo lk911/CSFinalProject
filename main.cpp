@@ -4,14 +4,27 @@
 #include <string>
 #include <cstdio>
 #include <ctime>
+#include <time.h>
+#include <windows.h>
 
 using namespace std;
 
 int main(){
-    clock_t start;
+    DWORD start, end;
     double duration;
-    start = clock();
-    duration = (clock() - start ) / (double) CLOCKS_PER_SEC;
+    start = timeGetTime();
+    int numguesses=0, numtrueguesses=0, numfalseguesses=0;
+    int originalSolution[9][9] = {
+        {5,3,4,6,7,8,9,1,2},
+        {6,7,2,1,9,5,3,4,8},
+        {1,9,8,3,4,2,5,6,7},
+        {8,5,9,7,6,1,4,2,3},
+        {4,2,6,8,5,3,7,9,1},
+        {7,1,3,9,2,4,8,5,6},
+        {9,6,1,5,3,7,2,8,4},
+        {2,8,7,4,1,9,6,3,5},
+        {3,4,5,2,8,6,1,7,9}};
+
     int presetSolution[9][9] = {
         {5,3,4,6,7,8,9,1,2},
         {6,7,2,1,9,5,3,4,8},
@@ -21,16 +34,24 @@ int main(){
         {7,1,3,9,2,4,8,5,6},
         {9,6,1,5,3,7,2,8,4},
         {2,8,7,4,1,9,6,3,5},
-        {3,4,5,2,8,6,1,7,9}
-
-                            };
+        {3,4,5,2,8,6,1,7,9}};
     int solution[9][9];
     srand(time(0));
-    makeBoard(presetSolution);
 
-    for(int i=0; !checkAnswer(presetSolution); i++ ){
-        
+    makePuzzle(presetSolution, welcomeUser());
+    while(!isfull(presetSolution)){
+        if (enterandcheckanswer(originalSolution,presetSolution, numguesses, numtrueguesses, numfalseguesses)){
+            cout<<"Your answer fits!"<<endl;
+        }
+        else{
+            cout<<"Your answer does not fit"<<endl;
+        }
+        int numzeroes;
     }
-    return 0;
-}
+        cout << "Game over. Thanks for playing!" << endl;
+        end = timeGetTime();
+        duration = (double)(end - start)/100;
+        outputStats(numguesses, numtrueguesses, numfalseguesses);
+        cout << "The time you used: "<< duration << " seconds"<< endl;
 
+}
