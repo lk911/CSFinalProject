@@ -124,7 +124,6 @@ void makePuzzle(int presetSolution[9][9]){
 
 
 
-
 //Checking
 bool checkanswer(int i, int j, int solution[9][9], int presetSolution[9][9]){
     cout <<"Please enter the number of the line"<< endl;
@@ -132,8 +131,10 @@ bool checkanswer(int i, int j, int solution[9][9], int presetSolution[9][9]){
     cout <<"Please enter the number of the row"<< endl;
     cin >> j;
     if(presetSolution[i][j] == solution[i][j]){
+        cout <<"Your number is correct!"<< endl;
         return true;
     }
+    cout<<"Your number is wrong!"<< endl;
     return false;
 }
 bool checktotal(int solution[9][9], int presetSolution[9][9])
