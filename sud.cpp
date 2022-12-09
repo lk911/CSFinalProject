@@ -152,12 +152,11 @@ void zero_tag(int* p)
         *(++p)=0;        
         ++i;    
     }
+    return false;
 }
 bool checkAnswer(int presetSolution[9][9])
 {    
-    int tag[10]={0};  
-    int curValue=0;
-    int curValue=0;
+   
     for(int i=0; i<9;i++)
     {
         for(int j=0;j<9;j++)
@@ -166,8 +165,6 @@ bool checkAnswer(int presetSolution[9][9])
             tag[curValue]=1; 
         }
     }
-    if(!review(tag))
-        return false; 
 
     zero_tag(tag);
 
@@ -188,4 +185,3 @@ bool checkAnswer(int presetSolution[9][9])
     return true;
 
 }
-//test
