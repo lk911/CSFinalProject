@@ -126,62 +126,31 @@ void makePuzzle(int presetSolution[9][9]){
 
 
 //Checking
-void initSudoku(int presetSolution[9][9]){    
-    for(int i=0;i<9;i++)        
-        for(int j=0;j<9;j++)            
-            cin>>presetSolution[i][j];}
-bool review(int* p) 
-{    
-    int i=1;    
-    while(i<10)    
-    {        
-        if(!*(++p))        
-        {            
-            return false;        
-        }        
-        ++i;    
-    }    
-    return true;
-}
-
-void zero_tag(int* p)   
-{    
-    int i=1;    
-    while(i<10)    
-    {        
-        *(++p)=0;        
-        ++i;    
+bool checkanswer(int i, int j, int solution[9][9], int presetSolution[9][9]){
+    cout <<"Please enter the number of the line"<< endl;
+    cin >> i;
+    cout <<"Please enter the number of the row"<< endl;
+    cin >> j;
+    if(presetSolution[i][j] == solution[i][j]){
+        return true;
     }
     return false;
 }
-bool checkAnswer(int presetSolution[9][9])
+bool checktotal(int solution[9][9], int presetSolution[9][9])
 {    
    
     for(int i=0; i<9;i++)
     {
         for(int j=0;j<9;j++)
         {
-            curValue = presetSolution[i][j];
-            tag[curValue]=1; 
+            if(presetSolution[i][j] != solution[i][j]){
+                cout <<"Errors in the soduko!"<< endl; 
+                return false;
+            }
+            
         }
     }
-
-    zero_tag(tag);
-
-    for(int i=0; i<9;i++)
-    {
-        for(int j=0;j<9;j++){
-            curValue = presetSolution[i][j];
-            tag[curValue]=1; 
-        }
-    }
-    if(!review(tag)){
-        return false; 
-
-    zero_tag(tag);
-
-    }
-    
+    cout <<"Congratulation!"<< endl;
     return true;
 
 }
