@@ -126,88 +126,30 @@ void makePuzzle(int presetSolution[9][9]){
 
 
 //Checking
-void initSudoku();   
-bool checkAnswer();
-int mySudoku[9][9];
-void initSudoku(){    
-    for(int i=0;i<9;i++)        
-        for(int j=0;j<9;j++)            
-            cin>>mySudoku[i][j];}
-bool review(int* p) 
-{    
-    int i=1;    
-    while(i<10)    
-    {        
-        if(!*(++p))        
-        {            
-            return false;        
-        }        
-        ++i;    
-    }    
-    return true;
-}
-
-void zero_tag(int* p)   
-{    
-    int i=1;    
-    while(i<10)    
-    {        
-        *(++p)=0;        
-        ++i;    
+bool checkanswer(int i, int j, int solution[9][9], int presetSolution[9][9]){
+    cout <<"Please enter the number of the line"<< endl;
+    cin >> i;
+    cout <<"Please enter the number of the row"<< endl;
+    cin >> j;
+    if(presetSolution[i][j] == solution[i][j]){
+        return true;
     }
+    return false;
 }
-bool checkAnswer()
+bool checktotal(int solution[9][9], int presetSolution[9][9])
 {    
-    int tag[10]={0};  
-    int curValue=0;
-    int curValue=0;
+   
     for(int i=0; i<9;i++)
     {
         for(int j=0;j<9;j++)
         {
-            curValue = mySudoku[i][j];
-            tag[curValue]=1; 
+            if(presetSolution[i][j] != solution[i][j]){
+                return false;
+            }
+            
         }
     }
-    if(!review(tag))
-        return false; 
 
-    zero_tag(tag);
-
-    for(int i=0; i<9;i++)
-    {
-        for(int j=0;j<9;j++){
-            curValue = mySudoku[i][j];
-            tag[curValue]=1; 
-        }
-    }
-    if(!review(tag)){
-        return false; 
-
-    zero_tag(tag);
-
-    }
-    
     return true;
 
-}
-//checking if array is full
-bool isFull(int solution[9][9]) {
-    bool isfull;
-    for (int i = 0; i < 9; i++)
-    {
-       for (int j = 0; j<9; j++)
-       {
-        if (solution[i][j]==0)
-        {
-            return false;
-        }
-        else{
-            isfull= true;
-        }
-        
-       }
-        
-    }
-    return isfull;
 }
