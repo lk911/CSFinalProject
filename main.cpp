@@ -48,6 +48,7 @@ int main(){
         int numzeroes;
 }
         cout << "Game over. Thanks for playing!" << endl;
+        outputStats(numguesses, numtrueguesses, numfalseguesses);
+
     }
 
-// Duration, output stats
