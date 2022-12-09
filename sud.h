@@ -9,5 +9,6 @@ bool validBoard(int solution[9][9]);
 void printBoard(int solution[9][9]);
 void makePuzzle(int presetSolution[9][9]);
 bool isFull(int solution[9][9]);
-
+bool checkanswer(int i, int j, int solution[9][9], int presetSolution[9][9])
+bool checktotal(int solution[9][9], int presetSolution[9][9])
 #endif
