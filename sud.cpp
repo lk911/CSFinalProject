@@ -126,13 +126,10 @@ void makePuzzle(int presetSolution[9][9]){
 
 
 //Checking
-void initSudoku();   
-bool checkAnswer();
-int mySudoku[9][9];
-void initSudoku(){    
+void initSudoku(int presetSolution[9][9]){    
     for(int i=0;i<9;i++)        
         for(int j=0;j<9;j++)            
-            cin>>mySudoku[i][j];}
+            cin>>presetSolution[i][j];}
 bool review(int* p) 
 {    
     int i=1;    
@@ -156,7 +153,7 @@ void zero_tag(int* p)
         ++i;    
     }
 }
-bool checkAnswer()
+bool checkAnswer(int presetSolution[9][9])
 {    
     int tag[10]={0};  
     int curValue=0;
@@ -165,7 +162,7 @@ bool checkAnswer()
     {
         for(int j=0;j<9;j++)
         {
-            curValue = mySudoku[i][j];
+            curValue = presetSolution[i][j];
             tag[curValue]=1; 
         }
     }
@@ -177,7 +174,7 @@ bool checkAnswer()
     for(int i=0; i<9;i++)
     {
         for(int j=0;j<9;j++){
-            curValue = mySudoku[i][j];
+            curValue = presetSolution[i][j];
             tag[curValue]=1; 
         }
     }
