@@ -6,6 +6,7 @@
 #include <random>
 #include <algorithm>
 #include <iterator>
+
 using namespace std;
 
 char welcomeUser(){
@@ -17,145 +18,164 @@ char welcomeUser(){
     cin>>choice;
     return choice;
 }
-void createSolution(int solution[9][9]){
-    vector<vector<int>> square = {{1,2,3},{4,5,6},{7,8,9}};
-    vector<int> randsquare = {1,2,3,4,5,6,7,8,9};
-    vector<vector<int>> randomsolution = {{1,2,3},{4,5,6},{7,8,9}};
-    vector<vector<int>> final;
-    random_device rd;
-    mt19937 g(rd());
 
-    for(int i = 0; i < 3; i++){
-        for(int j = 0 ; j < 3; j++){
-            cout << square[i][j] << "|";
-        }
-        cout << endl << "------" << endl;
+//Prof Shea's Code
+void generateBoard(int solution[9][9], int startX, int startY) {
+    vector<int> nums = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    for(int i = 0; i < 9; i++) {
+        int randNum = rand() % nums.size(), valX = i % 3, valY = i / 3;
+
+        solution[startX + valX][startY + valY] = nums.at(randNum);
+        nums.erase(nums.begin() + randNum);
     }
-
-    //randomizing randsquare vectors
-   cout << endl;
-   shuffle(randsquare.begin(), randsquare.end(), g); 
-
-    //applying randsquare vector to square vector
-        int numrandsquare = -1;
-    for(int i = 0; i < 3; i++){
-        for(int j = 0 ; j < 3; j++){
-            square[i][j] = randsquare[numrandsquare+1];
-            numrandsquare++;
-        }
-    }
-
-    //mapping square vector onto randomsolution
-        final = square;
-        final.insert(final.end(), randomsolution.begin(), randomsolution.end());
-
-
-
-
-
-        //how the heck are you supposed to do this
-    for(int i=0;i<9;i++){
-    int numrandsquare =-1;
-    vector<int> randsquare = {1,2,3,4,5,6,7,8,9};
-    shuffle(randsquare.begin(), randsquare.end(), g); //shuffles random 1d array
-    for(int j = 0; j < 3; j++){// maps 1d array onto 2d
-        for(int k = 0 ; k < 3; k++){
-            square[j][k] = randsquare[numrandsquare+1];
-            numrandsquare++;
-        }
-    }
-
-    final = square;                          //maps random 2d array onto master puzzle array
-    final.insert(final.end(), randomsolution.begin(), randomsolution.end());
-    
-
 }
 
-//testing
-    cout << "Randomized vector:" << endl;
-
-    for(int i = 0; i < 3; i++){
-        for(int j = 0 ; j < 3; j++){
-            cout << square[i][j] << "|";
+void makeBoard(int solution[9][9]) {
+    long count = 0;
+    do {
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                generateBoard(solution, i * 3, j * 3);
+            }
         }
-        cout << endl << "------" << endl;
+        count++;
+
+        // Prints every millionth board 
+        if(count % 1000000 == 0) {
+            cout << "Board " << count << ":" << endl;
+            printBoard(solution);
+        }
+        
+    } while(!validBoard(solution));
+    cout << "Took " << count << " tries" << endl;
+}
+
+bool validBoard(int solution[9][9]) {
+    vector<int> nums;
+    for(int i = 0; i < 9; i++) {
+        for(int j = 0; j < 9; j++) {
+            if (find(nums.begin(), nums.end(), solution[i][j]) != nums.end()) {
+                return false;
+            }
+            nums.push_back(solution[i][j]);
+        }
+        nums.clear();
+        for(int j = 0; j < 9; j++) {
+            if (find(nums.begin(), nums.end(), solution[j][i]) != nums.end()) {
+                return false;
+            }
+            nums.push_back(solution[j][i]);
+        }
+        nums.clear();
+    }
+    return true;
+}
+
+//modified here for aesthetic purposes and to fit our code
+void printBoard(int presetSolution[9][9]){
+   for (int i = 0; i < 9; i++){
+      for (int j = 0; j < 9; j++){
+         if(j == 3 || j == 6)
+            cout << " | ";
+         cout << presetSolution[i][j] <<" ";
+      }
+      if(i == 2 || i == 5){
+         cout << endl;
+         for(int k = 0; k<9; k++)
+            cout << "---";
+      }
+      cout << endl;
+   }
+}
+
+//end of prof sheas code
+
+//creates and outputs puzzles varying in difficulty
+void makePuzzle(int presetSolution[9][9], char choice){
+    int randx, randy;
+    if(choice == 'a'){
+    for(int i=0; i < 45; i++){
+    randx = rand() % 9 + 0;
+    randy = rand() % 9 + 0;
+    presetSolution[randy][randx] = 0;
+    }
+    }
+    else if(choice == 'b'){
+    for(int i=0; i < 50; i++){
+    randx = rand() % 9 + 0;
+    randy = rand() % 9 + 0;
+    presetSolution[randy][randx] = 0;
+    }
+    }
+    else if(choice == 'c'){
+    for(int i=0; i < 60; i++){
+    randx = rand() % 9 + 0;
+    randy = rand() % 9 + 0;
+    presetSolution[randy][randx] = 0;
+    }
     }
 
-
-for(int i = 0; i < 6; i++){
-        for(int j = 0 ; j < 3; j++){
-            cout << final[i][j] << "|";
-        }
-        cout << endl << "------" << endl;
-    }     
+    printBoard(presetSolution);
+    cout << "Fill in all '0' values," << endl;
+}
 
 
-}    
 
 
 
 //Checking
-void initSudoku();   
-bool checkAnswer();
-int mySudoku[9][9];
-void initSudoku(){    
-    for(int i=0;i<9;i++)        
-        for(int j=0;j<9;j++)            
-            cin>>mySudoku[i][j];}
-bool review(int* p) 
-{    
-    int i=1;    
-    while(i<10)    
-    {        
-        if(!*(++p))        
-        {            
-            return false;        
-        }        
-        ++i;    
-    }    
-    return true;
-}
-
-void zero_tag(int* p)   
-{    
-    int i=1;    
-    while(i<10)    
-    {        
-        *(++p)=0;        
-        ++i;    
+bool enterandcheckanswer(int Originalsolution[9][9],int presetSolution[9][9]){
+    int i,j,guess;
+    cout <<"Please enter the number of the row"<< endl;
+    cin >> i;
+    cout <<"Please enter the number of the collumn"<< endl;
+    cin >> j;
+    cout<<"enter your guess:"<<endl;
+    cin>> guess;
+    if(guess == Originalsolution[i-1][j-1]){
+        presetSolution[i-1][j-1]=guess;
+        printBoard(presetSolution);
+        return true;
     }
+    printBoard(presetSolution);
+    return false;
+    
 }
-bool checkAnswer()
+bool checktotal(int Originalsolution[9][9], int presetSolution[9][9])
 {    
-    int tag[10]={0};  
-    int curValue=0;
     for(int i=0; i<9;i++)
     {
         for(int j=0;j<9;j++)
         {
-            curValue = mySudoku[i][j];
-            tag[curValue]=1; 
+            if(presetSolution[i][j] != Originalsolution[i][j]){
+                cout <<"Errors in the soduko!"<< endl; 
+                return false;
+            }
+            
         }
     }
-    if(!review(tag))
-        return false; 
-
-    zero_tag(tag);
-
-    for(int i=0; i<9;i++)
-    {
-        for(int j=0;j<9;j++){
-            curValue = mySudoku[i][j];
-            tag[curValue]=1; 
-        }
-    }
-    if(!review(tag)){
-        return false; 
-
-    zero_tag(tag);
-
-    }
-    
+    cout <<"Congratulation!"<< endl;
     return true;
-
+}
+bool isfull(int originalSolution[9][9]){
+    bool full;
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; i < 9; j++)
+        {
+            if (originalSolution[i][j]==0)
+            {
+                cout<<"not full"<<endl;
+                return false;
+            }
+            else{
+                full = true;
+            }
+            
+        }
+        
+    }
+    return full;
+    
 }
