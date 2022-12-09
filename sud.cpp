@@ -147,7 +147,7 @@ bool checktotal(int solution[9][9], int presetSolution[9][9])
         for(int j=0;j<9;j++)
         {
             if(presetSolution[i][j] != solution[i][j]){
-                cout <<"Errors in the soduko!"<< endl; 
+                cout <<"Errors in the Sukodu!"<< endl; 
                 return false;
             }
             
