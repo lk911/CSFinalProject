@@ -140,28 +140,13 @@ bool enterandcheckanswer(int originalSolution[9][9],int presetSolution[9][9]){
     return false;
     
 }
-bool checktotal(int Originalsolution[9][9], int presetSolution[9][9])
-{    
-    for(int i=0; i<9;i++)
-    {
-        for(int j=0;j<9;j++)
-        {
-            if(presetSolution[i][j] != Originalsolution[i][j]){
-                cout <<"Errors in the game!"<< endl; 
-                return false;
-            }
-            
-        }
-    }
-    cout <<"Congratulations!"<< endl;
-    return true;
-}
-bool isfull(int originalSolution[9][9]){
-    int numzeroes;
+bool isfull(int presetSolution[9][9]){
+    int numzeroes = 0;
     for(int i = 1; i < 9; i++){
         for(int j = 1; j < 9; j++){
-            if(originalSolution[i][j] == 0){
+            if(presetSolution[i][j] == 0){
                 numzeroes++;
+                cout << "found zero";
             }
         }
     }

@@ -23,9 +23,8 @@ int main(){
         {7,1,3,9,2,4,8,5,6},
         {9,6,1,5,3,7,2,8,4},
         {2,8,7,4,1,9,6,3,5},
-        {3,4,5,2,8,6,1,7,9}
+        {3,4,5,2,8,6,1,7,9}};
 
-                            };
     int presetSolution[9][9] = {
         {5,3,4,6,7,8,9,1,2},
         {6,7,2,1,9,5,3,4,8},
@@ -35,33 +34,21 @@ int main(){
         {7,1,3,9,2,4,8,5,6},
         {9,6,1,5,3,7,2,8,4},
         {2,8,7,4,1,9,6,3,5},
-        {3,4,5,2,8,6,1,7,9}
-
-                            };
+        {3,4,5,2,8,6,1,7,9}};
     int solution[9][9];
     srand(time(0));
-    while (gamerun)
-    {
-        if (!puzzlemade)
-        {
-            makePuzzle(presetSolution, welcomeUser());
-            puzzlemade=true;
-        }
-        if (enterandcheckanswer(originalSolution,presetSolution))
-        {
+
+    makePuzzle(presetSolution, welcomeUser());
+    for(int i = 0; !isfull(presetSolution); i++){
+        if (enterandcheckanswer(originalSolution,presetSolution)){
             cout<<"Your answer fits!"<<endl;
         }
         else{
             cout<<"Your answer does not fit"<<endl;
         }
         numofguesses++;
-        if (isfull(originalSolution))
-        {
-            cout<<"Congrats! You finished!"<<endl;
-            cout<<"You completed it in: "<< duration <<endl;
-            return 0;
-        }
-        
-    }
+        int numzeroes;
 }
+        cout << "Game over. Thanks for playing!" << endl;
+    }
 // Duration, output stats
